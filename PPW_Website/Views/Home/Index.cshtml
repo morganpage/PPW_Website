@@ -1,0 +1,84 @@
+﻿@model IEnumerable<PPW_Website.Models.WEBJob>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div>
+    <img src="@Url.Action("GetImage")" alt="" />
+</div>*@
+
+<style type="text/css">
+        .webGrid { margin: 4px; border-collapse: collapse; width: 500px;  background-color:#FCFCFC;}
+        .header { background-color: #C1D4E6; font-weight: bold; color: #FFF; }
+        .webGrid th, .webGrid td { border: 1px solid #C0C0C0; padding: 5px; }
+        .alt { background-color: #E4E9F5; color: #000; }
+        .gridHead a:hover {text-decoration:underline;}
+        .description { width:auto}
+        .select{background-color: #389DF5}
+    </style>
+
+
+@{
+ 
+    var grid = new WebGrid(Model, defaultSort: "TicketID", canPage: true, rowsPerPage: 5, selectionFieldName: "selectedRow");
+    grid.Pager(WebGridPagerModes.NextPrevious);
+    
+    //var grid = new WebGrid(Model, canPage: true, rowsPerPage: 5, 
+    //selectionFieldName: "selectedRow",ajaxUpdateContainerId: "gridContent");
+     //   grid.Pager(WebGridPagerModes.NextPrevious);} 
+ 
+}
+
+
+@grid.GetHtml(
+
+                tableStyle: "webGrid",
+                headerStyle: "header",
+                alternatingRowStyle: "alt",
+                selectedRowStyle: "select",
+
+
+columns: grid.Columns(
+
+//grid.Column("Edit",header:null,format:@<text>@item.GetSelectLink("Edit")</text>),
+
+
+
+
+
+
+ grid.Column("DelDate", header: "DDate", format: @<text>@item.DelDate.ToString("dd/MM/yyyy")</text>),
+ grid.Column("ActTimeDel", header: "DTime", format: (item) => item.ActTimeDel == null ? string.Empty : item.ActTimeDel.ToString("HH:mm")),
+
+ grid.Column("POD"),
+ grid.Column("PODExtra"),
+ grid.Column("TicketID", header: "Our Job No", format: (item) => item.GetSelectLink(item.TicketID.ToString())),
+ grid.Column("Collect", header: "From", format: @<text>@item.Collect </text>),
+ grid.Column("Deliver", header: "To", format: @<text>@item.Deliver </text>),
+ grid.Column("InvDetail", header: "Invoice Note"),
+ grid.Column("MoreInfo", header: "More Info"),
+ grid.Column("StatusReport", header: "Status Report"),
+        //grid.Column(header: "CSig", format:@<text><img src=@Html.Partial("_Thumbnail",(WebImage)item.CPDA_SigWI)</text> )
+        //grid.Column(header: "CSig", format:@<img src="@Url.Action("GetImage")" alt=""</text> )
+ //grid.Column(header: "CSig", format: (item) =>
+ //{
+ //    //return Html.Raw(string.Format("<text><img src=\"{0}\" alt=\"Image\"/></text>", Url.Content("~/Content/images/non-preview-photo.gif")));
+ //    //return Html.Raw(string.Format("<text><img src=\"{0}\" alt=\"Image\"/>    height=\"12px\" width=\"12px\"     </text>", @Html.RenderAction("_Thumbnail", (WebImage)item.CPDA_SigWI)));
+ //})
+
+ //grid.Column(header: "CSig",format:@<text>@Html.Raw("<img src=\"/Content/Capture.png\" />")</text>)
+ 
+ //grid.Column(header: "CSig",format:@<text><img src="@Url.Action("GetImage")" /></text>)
+ 
+ grid.Column(header: "CSig",format:@<text><img src=" @Url.Action("GetImage", new { strCD = "C", lngTicketID = item.TicketID }) " height="50px" /></text>),
+ grid.Column(header: "DSig",format:@<text><img src=" @Url.Action("GetImage", new { strCD = "D", lngTicketID = item.TicketID }) " height="50px" /></text>)
+
+
+//grid.Column(header: "CSig",format:@<text><img src="@Url.Action("GetImage")" /></text>)
+// grid.Column(header: "CSig",format:@<text><img src="@Html.RenderPartial("_Thumbnail",(WebImage)item.CPDA_SigWI)" /></text>)
+    )
+
+
+)
+  
