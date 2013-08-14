@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<PPW_Website.Models.WEBJob>
 
-@{
-    ViewBag.Title = "Home Page";
-}
-
 @*<div>
     <img src="@Url.Action("GetImage")" alt="" />
 </div>*@
+<hgroup class="title">
+    <h1>@ViewBag.Message - </h1>
+    <h2>@ViewBag.AccountName</h2>
+</hgroup>
 
 <style type="text/css">
         .webGrid { margin: 4px; border-collapse: collapse; width: 500px;  background-color:#FCFCFC;}

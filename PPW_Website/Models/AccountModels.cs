@@ -48,6 +48,7 @@ namespace PPW_Website.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
@@ -68,6 +69,13 @@ namespace PPW_Website.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+
+        [Display(Name = "Account name")]
+        public string AccountName { get; set; }
+        [Display(Name = "Account code")]
+        public string AccountCode { get; set; }
+
     }
 
     public class ExternalLogin

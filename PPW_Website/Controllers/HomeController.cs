@@ -12,9 +12,16 @@ namespace PPW_Website.Controllers
     {
         dppwSQLDB _db = new dppwSQLDB();
 
+        [Authorize]
         public ActionResult Index()
         {
             ViewBag.Message = "Job Enquiries";
+            var username = User.Identity.Name;
+            var user = _db.UserProfiles.SingleOrDefault(u => u.UserName == username);
+            var accountname = user.AccountName;
+
+            ViewBag.AccountName = accountname;
+
             var model = _db.GetWEBJobs("PDA1");
             return View(model);
         }

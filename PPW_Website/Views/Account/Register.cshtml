@@ -20,6 +20,10 @@
                 @Html.TextBoxFor(m => m.UserName)
             </li>
             <li>
+                @Html.LabelFor(m => m.AccountName)
+                @Html.TextBoxFor(m => m.AccountName)
+            </li>
+            <li>
                 @Html.LabelFor(m => m.Password)
                 @Html.PasswordFor(m => m.Password)
             </li>
@@ -27,6 +31,9 @@
                 @Html.LabelFor(m => m.ConfirmPassword)
                 @Html.PasswordFor(m => m.ConfirmPassword)
             </li>
+
+
+
         </ol>
         <input type="submit" value="Register" />
     </fieldset>
