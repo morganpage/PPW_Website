@@ -114,9 +114,19 @@ namespace PPW_Website.Models
             }
         }
 
-
-        public IEnumerable<WEBJob> GetWEBJobs(string strPDA)
+        public IEnumerable<WEBJob> GetWEBJobs(string strAc, DateTime dtFrom, DateTime dtTo)
         {
+            var param = new SqlParameter[] { 
+                    new SqlParameter("Ac",strAc),    
+                    new SqlParameter("DateFrom",dtFrom),
+                    new SqlParameter("DateTo",dtTo)
+                };
+            IEnumerable<WEBJob> model = this.Database.SqlQuery<WEBJob>("EXEC usp_WSv_GetWEBJobs @Ac,@DateFrom,@DateTo", param).ToList<WEBJob>(); //ToList Forces immediate
+            return model;
+        }
+        public IEnumerable<WEBJob> GetWEBJobsOLD(string strAc,DateTime dtFrom,DateTime dtTo)
+        {
+            if (strAc == "") return null;
 
             string strSQL = "SELECT TrafficSheet.TicketID,DelDate,ActTimeDel ,POD,PODExtra, ";
             strSQL += "Collect1 + CHAR(10) +  CAST(Collect2 AS NVARCHAR(MAX)) + CHAR(10) + CPostCode AS 'Collect',";
@@ -125,29 +135,29 @@ namespace PPW_Website.Models
             strSQL += "TrafficSheet.StatusReport, MultiDrop.CPDA_Sig,MultiDrop.PDA_Sig ";
             strSQL += "FROM  TrafficSheet INNER JOIN MultiDrop ON TrafficSheet.TRID = MultiDrop.TRID ";
             //strSQL += "WHERE CPDA_ID = 'PDA1'";
-            strSQL += "WHERE (MultiDrop.CPDA_Sig IS NOT NULL)";
+            strSQL += "WHERE TrafficSheet.Ac ='" + strAc + "'";
 
             IEnumerable<WEBJob> model = this.Database.SqlQuery<WEBJob>(strSQL).ToList<WEBJob>();
-            foreach (var m in model)
-            {
-                try
-                {
-                    m.CPDA_SigWI = new WebImage(m.CPDA_Sig);
-                }
-                catch
-                {
+            //foreach (var m in model)
+            //{
+            //    try
+            //    {
+            //        m.CPDA_SigWI = new WebImage(m.CPDA_Sig);
+            //    }
+            //    catch
+            //    {
 
-                }
-                try
-                {
-                    m.PDA_SigWI = new WebImage(m.PDA_Sig);
-                }
-                catch
-                {
+            //    }
+            //    try
+            //    {
+            //        m.PDA_SigWI = new WebImage(m.PDA_Sig);
+            //    }
+            //    catch
+            //    {
 
-                }
+            //    }
 
-            }
+            //}
             return model;
         }
 

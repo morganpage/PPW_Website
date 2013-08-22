@@ -13,16 +13,23 @@ namespace PPW_Website.Controllers
         dppwSQLDB _db = new dppwSQLDB();
 
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string dateFrom="", string dateTo="")
         {
+            if (dateFrom == "") dateFrom = DateTime.Now.ToShortDateString();
+            if (dateTo == "") dateTo = DateTime.Now.ToShortDateString();
+            IFormatProvider culture = System.Threading.Thread.CurrentThread.CurrentCulture;
+            DateTime dtFrom = DateTime.Parse(dateFrom, culture, System.Globalization.DateTimeStyles.AssumeLocal);
+            DateTime dtTo = DateTime.Parse(dateTo, culture, System.Globalization.DateTimeStyles.AssumeLocal);
             ViewBag.Message = "Job Enquiries";
+            ViewBag.DateFrom = dateFrom;
+            ViewBag.DateTo = dateTo;
             var username = User.Identity.Name;
             var user = _db.UserProfiles.SingleOrDefault(u => u.UserName == username);
             var accountname = user.AccountName;
 
             ViewBag.AccountName = accountname;
 
-            var model = _db.GetWEBJobs("PDA1");
+            var model = _db.GetWEBJobs(accountname,dtFrom,dtTo);
             return View(model);
         }
 

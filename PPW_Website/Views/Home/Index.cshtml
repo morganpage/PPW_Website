@@ -8,6 +8,18 @@
     <h2>@ViewBag.AccountName</h2>
 </hgroup>
 
+@using (Html.BeginForm())
+{
+    <h3>
+    Job delivery dates from 
+    @Html.TextBox("dateFrom", (string)ViewBag.DateFrom,new { @class = "date-input" }) 
+    to 
+    @Html.TextBox("dateTo", (string)ViewBag.DateTo,new { @class = "date-input" }) 
+    
+    <input type="submit" value="Refresh" />
+    </h3>
+}
+
 <style type="text/css">
         .webGrid { margin: 4px; border-collapse: collapse; width: 500px;  background-color:#FCFCFC;}
         .header { background-color: #C1D4E6; font-weight: bold; color: #FFF; }
@@ -16,6 +28,7 @@
         .gridHead a:hover {text-decoration:underline;}
         .description { width:auto}
         .select{background-color: #389DF5}
+        .date-input {width:100px}
 </style>
 
 
