@@ -12,6 +12,12 @@ namespace PPW_Website.Controllers
     {
         dppwSQLDB _db = new dppwSQLDB();
 
+
+        public ActionResult Search(string datefrom = "", string dateto = "")
+        {
+            return RedirectToAction("Index", "Home", new { dateFrom = datefrom,dateTo=dateto });
+        }
+
         [Authorize]
         public ActionResult Index(string dateFrom="", string dateTo="")
         {

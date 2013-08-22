@@ -8,7 +8,7 @@
     <h2>@ViewBag.AccountName</h2>
 </hgroup>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Search","Home"))
 {
     <h3>
     Job delivery dates from 
@@ -31,6 +31,7 @@
         .date-input {width:100px}
 </style>
 
+<div id="grid">
 
 @{
  
@@ -94,4 +95,24 @@ columns: grid.Columns(
 
 
 )
-  
+</div>
+
+@*<script type="text/javascript">
+    $(document).ready(function () {
+
+        function updateGrid(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+           // var grid = $(#grid);
+            //var id = grid.attr('id');
+            //grid.load(url + ' #' + id);
+            //grid.load(url + 'hello');
+            //Debug.write("hello");
+            System.Diagnostics.Debug.WriteLine("SomeText");
+        };
+
+        //$('#grid a').live('click', updateGrid);
+
+
+    });
+</script>*@
