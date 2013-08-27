@@ -17,6 +17,7 @@ namespace PPW_Website.Controllers
    // [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        dppwSQLDB _db = new dppwSQLDB();
         //
         // GET: /Account/Login
 
@@ -79,6 +80,11 @@ namespace PPW_Website.Controllers
                 // Attempt to register the user
                 try
                 {
+                    if (!_db.IsValidPasscode(model.AccountName, model.AccountPassCode))
+                    {
+                        ModelState.AddModelError("", "Passcode incorrect");
+                        return View(model);
+                    }
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { AccountName = model.AccountName });
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");

@@ -73,8 +73,8 @@ namespace PPW_Website.Models
 
         [Display(Name = "Account name")]
         public string AccountName { get; set; }
-        [Display(Name = "Account code")]
-        public string AccountCode { get; set; }
+        [Display(Name = "Account Passcode")]
+        public string AccountPassCode { get; set; }
 
     }
 

@@ -32,8 +32,23 @@ namespace PPW_Website.Models
                 return false;
             }
         }
-
-
+        public bool IsValidPasscode(string strAc,string Passcode)
+        {
+            try
+            {
+                IEnumerable<String> strPasscodes = this.Database.SqlQuery<string>("SELECT Web_Passcode FROM Customer WHERE Ac = '" + strAc + "'");
+                string strPasscode = strPasscodes.First<String>();
+                if (strPasscode == Passcode)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                ErrorHandler(e);
+                return false;
+            }
+        }
         public IEnumerable<PDAJob> GetPDAJobs(string strPDA)//Returns list of jobs suitable for pickup by PDA and updates pdastatus
         {
             try
