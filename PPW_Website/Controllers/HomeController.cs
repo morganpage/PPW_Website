@@ -39,6 +39,15 @@ namespace PPW_Website.Controllers
             return View(model);
         }
 
+        public ActionResult Report()
+        {
+            ViewBag.Title = "C O N S I G N M E N T  N O T E";
+
+            return View("Report","_LayoutReport");
+        }
+
+
+
         public ActionResult GetImage(long lngTicketID, string strCD)
         {
             Byte[] bytes = _db.GetImage(lngTicketID, strCD);

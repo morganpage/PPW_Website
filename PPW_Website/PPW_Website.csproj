@@ -309,6 +309,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\GetImage.cshtml" />
+    <Content Include="Views\Home\Report.cshtml" />
+    <Content Include="Views\Shared\_LayoutReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

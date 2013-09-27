@@ -85,9 +85,13 @@ columns: grid.Columns(
  
  //grid.Column(header: "CSig",format:@<text><img src="@Url.Action("GetImage")" /></text>)
  
- grid.Column(header: "CSig",format:@<text><img src=" @Url.Action("GetImage", new { strCD = "C", lngTicketID = item.TicketID }) " height="50px" /></text>),
- grid.Column(header: "DSig",format:@<text><img src=" @Url.Action("GetImage", new { strCD = "D", lngTicketID = item.TicketID }) " height="50px" /></text>)
+ 
+ 
+ grid.Column(header: "CSig",format: @<text><a href="@Url.Action("Report", new {  strCD = "C", lngTicketID = item.TicketID })"><img src=" @Url.Action("GetImage", new { strCD = "C", lngTicketID = item.TicketID }) " height="50px" /></a></text>),
+ grid.Column(header: "DSig",format: @<text><a href="@Url.Action("Report", new {  strCD = "D", lngTicketID = item.TicketID })"><img src=" @Url.Action("GetImage", new { strCD = "D", lngTicketID = item.TicketID }) " height="50px" /></a></text>)
+  
 
+ 
 
 //grid.Column(header: "CSig",format:@<text><img src="@Url.Action("GetImage")" /></text>)
 // grid.Column(header: "CSig",format:@<text><img src="@Html.RenderPartial("_Thumbnail",(WebImage)item.CPDA_SigWI)" /></text>)
