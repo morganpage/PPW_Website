@@ -139,6 +139,36 @@ namespace PPW_Website.Models
             IEnumerable<WEBJob> model = this.Database.SqlQuery<WEBJob>("EXEC usp_WSv_GetWEBJobs @Ac,@DateFrom,@DateTo", param).ToList<WEBJob>(); //ToList Forces immediate
             return model;
         }
+
+        public ReportJob GetReportJob(long lngTicketID, string strCD)
+        {
+            string strSQL = "";
+            strSQL += "SELECT TrafficSheet.TicketID,TrafficSheet.Ac,Customer.Name,POD,DiName,PODExtra,";
+            strSQL += "Collect1,Collect2,CPostCode,ColDate,ColTime,Vehicles.RegNo AS CRegNo,Drivers.NickName AS CNickName,ColTrlr,CLoadNo,CPickUp,ColSiteRestrict,ColOpenTimes, ";
+            strSQL += "Deliver1,Deliver2,DPostCode,DelDate,DelTime,Vehicles_1.RegNo AS DRegNo,Drivers_1.NickName AS DNickName,DelTrlr,LoadNo,[Drop],DelSiteRestrict,DelOpenTimes, ";
+            strSQL += "Units,M3,Miles,Pallets,ActWt,TrafficSheet.Goods,TrafficSheet.Remarks,TrafficSheet.ConDetail,VanDeVan,Container,CrLimit,TrafficSheet.Rate,RateName,";
+            strSQL += "TrafficSheet.SignedFor,ActCTimeArr,DelDate_MD,TrafficSheet.PDA_ID";
+            strSQL += " FROM TrafficSheet LEFT OUTER JOIN ";
+            strSQL += "RateTypes ON TrafficSheet.RateTypeID = RateTypes.RateTypeID    LEFT OUTER JOIN MultiDrop ON TrafficSheet.TRID = MultiDrop.TRID                LEFT OUTER JOIN ";
+            strSQL += "             Drivers AS Drivers_1 ON TrafficSheet.DelDriverID = Drivers_1.EmployeeID LEFT OUTER JOIN ";
+strSQL += "                         Drivers ON TrafficSheet.ColDriverID = Drivers.EmployeeID LEFT OUTER JOIN ";
+strSQL += "                         Vehicles AS Vehicles_1 RIGHT OUTER JOIN ";
+strSQL += "                         VehicleShifts ON Vehicles_1.VehicleID = VehicleShifts.VehicleShiftID ON ";
+strSQL += "                         TrafficSheet.DelVehicleShiftID = VehicleShifts.VehicleShiftID LEFT OUTER JOIN ";
+strSQL += "                         Customer ON TrafficSheet.Ac = Customer.Ac LEFT OUTER JOIN ";
+strSQL += "                         Vehicles RIGHT OUTER JOIN ";
+strSQL += "                         VehicleShifts AS VehicleShifts_1 ON Vehicles.VehicleID = VehicleShifts_1.VehicleID ON ";
+strSQL += "                         TrafficSheet.ColVehicleShiftID = VehicleShifts_1.VehicleShiftID ";
+
+
+
+
+            strSQL += " WHERE TrafficSheet.TicketID = " + lngTicketID;
+            IEnumerable<ReportJob> reportjobs = this.Database.SqlQuery<ReportJob>(strSQL);
+            return reportjobs.First();
+        }
+
+
         public IEnumerable<WEBJob> GetWEBJobsOLD(string strAc,DateTime dtFrom,DateTime dtTo)
         {
             if (strAc == "") return null;

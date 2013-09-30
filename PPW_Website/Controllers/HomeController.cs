@@ -39,11 +39,11 @@ namespace PPW_Website.Controllers
             return View(model);
         }
 
-        public ActionResult Report()
+        public ActionResult Report(long lngTicketID,string strCD)
         {
-            ViewBag.Title = "C O N S I G N M E N T  N O T E";
-
-            return View("Report","_LayoutReport");
+            ViewBag.Title = "CONSIGNMENT NOTE";
+            var model = _db.GetReportJob(lngTicketID, strCD);
+            return View("Report","_LayoutReport",model);
         }
 
 

@@ -1,65 +1,191 @@
-﻿<hgroup class="title">
+﻿@model PPW_Website.Models.ReportJob
+
+<hgroup class="title">
     <h1>@ViewBag.Title</h1>
     <h2>@ViewBag.Message</h2>
 </hgroup>
 <hr />
-<table border="1" width="700">
+<table border="1" width="800">
     <tr>
         <th>
             A/C NUMBER
         </th>
         <td>
-            CIS
+            @Html.DisplayFor(model => model.Ac)
         </td>
         <th>
             NOTE No.
         </th>
         <th>
-            39762
+            @Html.DisplayFor(model => model.TicketID)
         </th>
     </tr>
     <tr>
         <th>
         </th>
         <td>
-            CIS INDUSTRIAL
+            @Html.DisplayFor(model => model.Name)
         </td>
         <th>
             Customer Ref.
         </th>
         <th>
-            CREF1234
+            @Html.DisplayFor(model => model.POD)
         </th>
     </tr>
-</table>
-<hr />
-<table border="1" width="700">
+    <tr>
+        <th>
+        </th>
+        <td>
+        </td>
+        <th>
+            @Html.DisplayFor(model => model.DiName)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.PODExtra)
+        </th>
+    </tr>
     <tr>
         <th>
             COLLECT FROM
         </th>
         <td>
-            YRT123
+            @Html.DisplayFor(model => model.Collect1)
         </td>
         <td>
-            28/10/2013
+            @Html.DisplayFor(model => model.CPostCode)
         </td>
         <td>
-            
+            @Html.DisplayFor(model => model.ColDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ColTime)
         </td>
     </tr>
     <tr>
         <th>
         </th>
         <td>
-            6 YEARLY TACHO
+            @Html.DisplayFor(model => model.Collect2)
         </td>
         <td>
-            Z302
+            @Html.DisplayFor(model => model.CRegNo)
         </td>
         <td>
-            SUBBY
+            @Html.DisplayFor(model => model.CNickName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ColTrlr)
         </td>
     </tr>
-</table>
+    <tr>
+        <th>
+            Site Restrictions:
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.ColSiteRestrict)
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Opening Times:
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.ColOpenTimes)
+        </td>
+    </tr>
+
+
+    <tr>
+        <th>
+            DELIVER TO
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Deliver1)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DPostCode)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DelDate)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DelTime)
+        </td>
+    </tr>
+    <tr>
+        <th>
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Deliver2)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DRegNo)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DNickName)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DelTrlr)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Site Restrictions:
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.DelSiteRestrict)
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Opening Times:
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.DelOpenTimes)
+        </td>
+    </tr>
+    </table>
+<table>
+    <tr>
+        <th>
+            DETAILS:
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Units)
+        </td>
+        <th>
+            Units
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.M3)
+        </td>
+        <th>
+            Cu
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Miles)
+        </td>
+        <th>
+            Miles
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.Pallets)
+        </td>
+        <th>
+            Plts
+        </th>
+        <td>
+            @Html.DisplayFor(model => model.ActWt)
+        </td>
+        <th>
+            Wt
+        </th>
+    </tr>
+    </table>
+
+
+
 <hr />
