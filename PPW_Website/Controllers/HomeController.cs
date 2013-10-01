@@ -42,6 +42,9 @@ namespace PPW_Website.Controllers
         public ActionResult Report(long lngTicketID,string strCD)
         {
             ViewBag.Title = "CONSIGNMENT NOTE";
+
+            ViewBag.CD = strCD;
+
             var model = _db.GetReportJob(lngTicketID, strCD);
             return View("Report","_LayoutReport",model);
         }

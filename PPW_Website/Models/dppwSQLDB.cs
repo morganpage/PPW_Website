@@ -147,7 +147,7 @@ namespace PPW_Website.Models
             strSQL += "Collect1,Collect2,CPostCode,ColDate,ColTime,Vehicles.RegNo AS CRegNo,Drivers.NickName AS CNickName,ColTrlr,CLoadNo,CPickUp,ColSiteRestrict,ColOpenTimes, ";
             strSQL += "Deliver1,Deliver2,DPostCode,DelDate,DelTime,Vehicles_1.RegNo AS DRegNo,Drivers_1.NickName AS DNickName,DelTrlr,LoadNo,[Drop],DelSiteRestrict,DelOpenTimes, ";
             strSQL += "Units,M3,Miles,Pallets,ActWt,TrafficSheet.Goods,TrafficSheet.Remarks,TrafficSheet.ConDetail,VanDeVan,Container,CrLimit,TrafficSheet.Rate,RateName,";
-            strSQL += "TrafficSheet.SignedFor,ActCTimeArr,DelDate_MD,TrafficSheet.PDA_ID";
+            strSQL += "MultiDrop.CSignedFor,MultiDrop.SignedFor,ActCTimeArr,DelDate_MD,TrafficSheet.CPDA_ID,TrafficSheet.PDA_ID,ActTimeLeft,ActTimeDel";
             strSQL += " FROM TrafficSheet LEFT OUTER JOIN ";
             strSQL += "RateTypes ON TrafficSheet.RateTypeID = RateTypes.RateTypeID    LEFT OUTER JOIN MultiDrop ON TrafficSheet.TRID = MultiDrop.TRID                LEFT OUTER JOIN ";
             strSQL += "             Drivers AS Drivers_1 ON TrafficSheet.DelDriverID = Drivers_1.EmployeeID LEFT OUTER JOIN ";

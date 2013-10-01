@@ -5,7 +5,7 @@
     <h2>@ViewBag.Message</h2>
 </hgroup>
 <hr />
-<table border="1" width="800">
+<table>
     <tr>
         <th>
             A/C NUMBER
@@ -148,42 +148,163 @@
         </td>
     </tr>
     </table>
-<table>
+<hr />
+<table class ="right">
     <tr>
         <th>
             DETAILS:
         </th>
         <td>
-            @Html.DisplayFor(model => model.Units)
+            @if (Model.Units != 0)
+            {
+                @Html.DisplayFor(model => model.Units)
+            }
         </td>
         <th>
-            Units
+            @if (Model.Units != 0)
+            {
+                @("Units");
+            }
         </th>
         <td>
-            @Html.DisplayFor(model => model.M3)
+            @if (Model.M3 != 0)
+            {
+                @Html.DisplayFor(model => model.M3)
+            }
         </td>
         <th>
-            Cu
+            @if (Model.M3 != 0)
+            {
+                @("Cu");
+            }
         </th>
         <td>
-            @Html.DisplayFor(model => model.Miles)
+            @if (Model.Miles != 0)
+            {
+                @Html.DisplayFor(model => model.Miles)
+            }
         </td>
         <th>
-            Miles
+            @if (Model.Miles != 0)
+            {
+                @("Miles");
+            }
         </th>
         <td>
-            @Html.DisplayFor(model => model.Pallets)
+            @if (Model.Pallets != 0)
+            {
+                @Html.DisplayFor(model => model.Pallets)
+            }
         </td>
         <th>
-            Plts
+            @if (Model.Pallets != 0)
+            {
+                @("Plts");
+            }
         </th>
         <td>
-            @Html.DisplayFor(model => model.ActWt)
+            @if (Model.ActWt != 0)
+            {
+                @Html.DisplayFor(model => model.ActWt)
+            }
         </td>
         <th>
-            Wt
+            @if (Model.ActWt != 0)
+            {
+                @("Wt");
+            }
         </th>
     </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.Goods)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.Remarks)
+        </td>
+    </tr>
+        <td>
+            @Html.DisplayFor(model => model.ConDetail)
+        </td>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.VanDeVan)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.Container)
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+            Authorised Signature:
+        </th>
+        <td>
+            <img src=" @Url.Action("GetImage", new { strCD = ViewBag.CD, lngTicketID = Model.TicketID }) " height="100px" alt="" />
+        </td>
+        <th>
+            Name:
+        </th>
+        <td>
+            @if (ViewBag.CD == "C")
+            {
+                @Html.DisplayFor(model => model.CSignedFor)
+            }else
+            {
+                @Html.DisplayFor(model => model.SignedFor)
+            }
+        </td>
+        <th>
+            Time:
+        </th>
+        <td>
+            @if (ViewBag.CD == "C")
+            {
+                @Html.DisplayFor(model => model.ActTimeLeft)
+            }else
+            {
+                @Html.DisplayFor(model => model.ActTimeDel)
+            }
+        </td>
+    </tr>
+    <tr>
+        <th>
+
+        </th>
+        <th>
+
+        </th>
+        <th>
+            Date:
+        </th>
+        <td>
+            @if (ViewBag.CD == "C")
+            {
+                @Html.DisplayFor(model => model.ColDate)
+            }else
+            {
+                @Html.DisplayFor(model => model.DelDate)
+            }
+        </td>
+        <th>
+            PDA:
+        </th>
+        <td>
+            @if (ViewBag.CD == "C")
+            {
+                @Html.DisplayFor(model => model.CPDA_ID)
+            }else
+            {
+                @Html.DisplayFor(model => model.PDA_ID)
+            }
+        </td>
+    </tr>
+
+
     </table>
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
@@ -78,7 +79,9 @@ namespace PPW_Website.Models
         public virtual string Collect1 { get; set; }
         public virtual string Collect2 { get; set; }
         public virtual string CPostCode { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public virtual DateTime? ColDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:hh:mm}", ApplyFormatInEditMode = true)]
         public virtual DateTime? ColTime { get; set; }
         public virtual string CRegNo{ get; set; }
         public virtual string CNickName { get; set; }
@@ -91,7 +94,9 @@ namespace PPW_Website.Models
         public virtual string Deliver1 { get; set; }
         public virtual string Deliver2 { get; set; }
         public virtual string DPostCode { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public virtual DateTime? DelDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:hh:mm}", ApplyFormatInEditMode = true)]
         public virtual DateTime? DelTime { get; set; }
         public virtual string DRegNo { get; set; }
         public virtual string DNickName { get; set; }
@@ -101,9 +106,8 @@ namespace PPW_Website.Models
         public virtual string DelSiteRestrict { get; set; }
         public virtual string DelOpenTimes { get; set; }
 
-//            strSQL += "Units,M3,Miles,Pallets,ActWt,Goods,Remarks,ConDetail,VanDeVan,Container,CrLimit,Rate,RateName,";
-  //          strSQL += "SignedFor,ActCTimeArr,DelDate_MD,PDA_ID";
         public virtual decimal Units { get; set; }
+
         public virtual decimal M3 { get; set; }
         public virtual Int16 Miles { get; set; }
         public virtual int Pallets { get; set; }
@@ -116,11 +120,19 @@ namespace PPW_Website.Models
         public virtual double CrLimit { get; set; }
         public virtual decimal Rate { get; set; }
         public virtual string RateName { get; set; }
+        public virtual string CSignedFor { get; set; }
         public virtual string SignedFor { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:hh:mm}", ApplyFormatInEditMode = true)]
         public virtual DateTime? ActCTimeArr { get; set; }
         public virtual DateTime? DelDate_MD { get; set; }
+        public virtual string CPDA_ID { get; set; }
         public virtual string PDA_ID { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:hh:mm}", ApplyFormatInEditMode = true)]
+        public virtual DateTime? ActTimeLeft { get; set; }
+        [DisplayFormat(DataFormatString = "{0:hh:mm}", ApplyFormatInEditMode = true)]
+        public virtual DateTime? ActTimeDel { get; set; }
 
 
     }

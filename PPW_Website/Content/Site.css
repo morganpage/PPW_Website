@@ -1,7 +1,10 @@
 ﻿html {
-    background-color: #e2e2e2;
     margin: 0;
     padding: 0;
+}
+
+img[src=""] {
+    display: none;
 }
 
 body {
@@ -119,10 +122,6 @@ header .content-wrapper {
 }
 
 footer {
-    clear: both;
-    background-color: #e2e2e2;
-    font-size: .8em;
-    height: 100px;
 }
 
 
@@ -150,6 +149,14 @@ footer {
         text-decoration: underline;
         letter-spacing:16px;
         text-align:center;
+    }
+
+    table {
+        min-width:800px;
+    }
+
+   .right {
+        text-align:right;
     }
 
 
@@ -542,7 +549,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     margin-top: 0.75em;
-    border: 0 none;
+    border:  none;
 }
 
 th {

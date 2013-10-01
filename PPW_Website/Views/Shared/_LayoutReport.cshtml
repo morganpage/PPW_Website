@@ -9,11 +9,11 @@
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
         @*@Scripts.Render("~/bundles/ppw")*@
-        @RenderPage("~/Content/PPWHeader.cshtml")
         
     </head>
     <body>
-        <header>
+        <header class="content-wrapper">
+            @RenderPage("~/Content/PPWHeader.cshtml")
         </header>
         <div id="report">
             @RenderSection("featured", required: false)
@@ -21,9 +21,8 @@
                 @RenderBody()
             </section>
         </div>
-        <footer>
-            <div class="content-wrapper">
-            </div>
+        <footer class="content-wrapper">
+             @RenderPage("~/Content/PPWHeader.cshtml")
         </footer>
         @Scripts.Render("~/bundles/jquery")
         
