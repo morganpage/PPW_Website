@@ -7,7 +7,7 @@ using System.Web;
 
 namespace PPW_Website.Models
 {
-    [Table("UserProfile")]
+    [Table("UserProfile", Schema = "dbo")]
     public class UserProfile
     {
         [Key]

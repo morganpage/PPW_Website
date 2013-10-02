@@ -158,7 +158,13 @@ footer {
    .right {
         text-align:right;
     }
-
+   .center {
+        text-align:center;
+    }
+    .banner {
+        font-size: 3.5em;
+        font-style:italic;
+    }
 
 
 /* login

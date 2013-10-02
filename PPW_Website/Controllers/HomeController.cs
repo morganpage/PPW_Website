@@ -35,28 +35,45 @@ namespace PPW_Website.Controllers
 
             ViewBag.AccountName = accountname;
 
+            if (accountname == "")
+            {
+                return Content("You Account Name cannot be blank!");
+            }
+
             var model = _db.GetWEBJobs(accountname,dtFrom,dtTo);
             return View(model);
         }
 
+        [Authorize]
         public ActionResult Report(long lngTicketID,string strCD)
         {
-            ViewBag.Title = "CONSIGNMENT NOTE";
+            if(strCD == "C")
+                ViewBag.Title = "COLLECTION NOTE";
+            else
+                ViewBag.Title = "CONSIGNMENT NOTE";
 
             ViewBag.CD = strCD;
-
             var model = _db.GetReportJob(lngTicketID, strCD);
+
+            var username = User.Identity.Name;
+            var user = _db.UserProfiles.SingleOrDefault(u => u.UserName == username);
+            var accountname = user.AccountName;
+            if (model.Ac != accountname)
+            {
+                return Content("You Account Name does not match!");
+            }
+
             return View("Report","_LayoutReport",model);
         }
 
 
-
+        [Authorize]
         public ActionResult GetImage(long lngTicketID, string strCD)
         {
-            Byte[] bytes = _db.GetImage(lngTicketID, strCD);
             WebImage model = null;
             try
             {
+                Byte[] bytes = _db.GetImage(lngTicketID, strCD);
                 model = new WebImage(bytes);
             }
             catch 

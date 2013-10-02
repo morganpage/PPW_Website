@@ -220,17 +220,24 @@ strSQL += "                         TrafficSheet.ColVehicleShiftID = VehicleShif
 
         public Byte[] GetImage(long lngTicketID, string strCD)
         {
-            IEnumerable<Byte[]> bytes;
-            string strSQL = "";
-            if(strCD == "C")
-                strSQL = "SELECT MultiDrop.CPDA_Sig ";
-            else
-                strSQL = "SELECT MultiDrop.PDA_Sig ";
+            try
+            {
+                IEnumerable<Byte[]> bytes;
+                string strSQL = "";
+                if(strCD == "C")
+                    strSQL = "SELECT MultiDrop.CPDA_Sig ";
+                else
+                    strSQL = "SELECT MultiDrop.PDA_Sig ";
 
-            strSQL += "FROM  TrafficSheet INNER JOIN MultiDrop ON TrafficSheet.TRID = MultiDrop.TRID ";
-            strSQL += "WHERE TrafficSheet.TicketID = " + lngTicketID;
-            bytes = this.Database.SqlQuery<Byte[]>(strSQL);
-            return bytes.First();
+                strSQL += "FROM  TrafficSheet INNER JOIN MultiDrop ON TrafficSheet.TRID = MultiDrop.TRID ";
+                strSQL += "WHERE TrafficSheet.TicketID = " + lngTicketID;
+                bytes = this.Database.SqlQuery<Byte[]>(strSQL);
+                return bytes.First();
+            }
+            catch (Exception)
+            {
+                return null;                
+            }
 
         }
 
